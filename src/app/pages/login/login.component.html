@@ -1,0 +1,9 @@
+<p>login works!</p>
+<button (click)="obtenerToken()">Hola</button>
+<form (ngSubmit)="cogerdatos()">
+    <input name="nombre" [(ngModel)]="persona.nombre" type="text">
+    <button type="submit">CogerDatos</button>
+</form>
+<button (click)="getToken()">
+    Obtener token
+</button>
