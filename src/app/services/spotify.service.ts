@@ -51,7 +51,7 @@ export class SpotifyService {
   }
 
   checkTokenSpoLogin(){
-    this.checkTokenSpo() || (sessionStorage.setItem('refererURL',location.href), window.location.href = this.poolURLS.authorize)
+    this.checkTokenSpo() || (sessionStorage.setItem('refererURL',location.href), window.location.replace(this.poolURLS.authorize))
   }
 
   checkTokenSpo(){

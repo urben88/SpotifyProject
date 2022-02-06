@@ -1,9 +1,12 @@
-<p>login works!</p>
-<button (click)="obtenerToken()">Hola</button>
-<form (ngSubmit)="cogerdatos()">
-    <input name="nombre" [(ngModel)]="persona.nombre" type="text">
-    <button type="submit">CogerDatos</button>
-</form>
-<button (click)="getToken()">
-    Obtener token
-</button>
+<div class="container-fluid" style="height: 100%;">
+    <div class="row" style="height: 100%">
+        <div class="col d-flex flex-column justify-content-center p-5" style="height: 100%">
+            <h1 class="display-1 fw-bold">Bienvenido de nuevo</h1>
+            <h2 class="h1  my-3">Identifícate para encontrar tu música favorita</h2>
+            <button class="spotify-btn align-self-center" style="width: 300px" (click)="obtenerToken()">Iniciar Sesión</button>
+        </div>
+        <div class="col p-0 imgFondo" style="background-image: url('assets/img/Fondo1.jpg')">
+        </div>
+    </div>
+</div>
+

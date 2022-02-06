@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+$colorSpotify: #1CB050;
+html,body{
+    height: 100%;
+}
+.spotify{
+    background-color: $colorSpotify;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.spotify-btn{
+    background-color: $colorSpotify;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 20px;
+}
