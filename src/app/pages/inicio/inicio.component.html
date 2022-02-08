@@ -49,7 +49,7 @@
     <div class="cajaPlaylists">
         <div *ngFor="let artista of playlists.items" class="artista">
            <img src="{{ artista.images[0].url }}" alt="">
-           <i class="fas fa-play"></i>
+           <a (click)="irPlayList(artista.id)"><i class="fas fa-play"></i></a>
            <h1 class="letra"> {{ artista.name }} </h1>
            <h2 class="text-muted h6">PlayList</h2>
        </div>

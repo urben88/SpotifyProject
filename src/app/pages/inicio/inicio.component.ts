@@ -7,6 +7,7 @@ import { TopArtists } from '../interfaces/topArtists.interface';
 import { TopTracks } from '../interfaces/topTracks.interface';
 import { DomSanitizer } from '@angular/platform-browser';
 import { map } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -26,11 +27,14 @@ export class InicioComponent implements OnInit {
   cuenta:number = 0;
   track = "https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl"
 
-  constructor(private _SpotifyService: SpotifyService, public sanitizer: DomSanitizer) { }
+  constructor(private _SpotifyService: SpotifyService, public sanitizer: DomSanitizer, private _router:Router) { }
 
 
   ngOnInit(): void {
-    this._SpotifyService.saveAccessToken();
+    if(!this._SpotifyService.checkTokenSpo()){
+      this._SpotifyService.saveAccessToken();
+    }
+    console.log(sessionStorage.getItem('token'))
     this._SpotifyService.getQuery<User>("me").subscribe( (data)=>{
       this.user = data;
       console.log(this.user)
@@ -65,5 +69,9 @@ export class InicioComponent implements OnInit {
 
   sumarCuenta(){
     return ((this.cuenta++) - 4);
+  }
+
+  irPlayList( id:string){
+    this._router.navigate(['/mostar',id]);
   }
 }

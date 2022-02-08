@@ -10,7 +10,7 @@ import { User } from '../pages/interfaces/user.interface';
 export class SpotifyService {
 
   //! Variables
-  public credentials= {
+  public credentials:any= {
     clientId: '96185c9ea2094961adfba2ff13383031',
     clientSecret:'4899ab44c1c2466f9a716f343e94dbf8',
     accessToken:''
@@ -43,7 +43,7 @@ export class SpotifyService {
   // todo METODOS
 
   upDateToken(){
-    this.credentials.accessToken = sessionStorage.getItem('token') || '';
+    this.credentials.accessToken = sessionStorage.getItem('token');
   }
 
 
@@ -79,9 +79,17 @@ export class SpotifyService {
     return params;
   }
   saveAccessToken(){
+   
     const currentQueryParameters = this.getCurrentQueryParameters('#');
-    this.credentials.accessToken = String(currentQueryParameters.get('access_token'));
-    sessionStorage.setItem('token',String(currentQueryParameters.get('access_token')))
+    if(currentQueryParameters.get('access_token')){
+      this.credentials.accessToken = String(currentQueryParameters.get('access_token'));
+      sessionStorage.setItem('token',this.credentials.accessToken);
+    }
+   
+
+  }
+  ponerToken(){
+    this.credentials.accessToken= sessionStorage.getItem('token') ;
   }
 
   fetchProfileInformation() {

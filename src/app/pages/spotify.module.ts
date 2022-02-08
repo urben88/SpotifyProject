@@ -17,8 +17,7 @@ import { MostrarComponent } from './mostrar/mostrar.component';
     LoginComponent,
     HomeComponent,
     InicioComponent,
-    SanitizeUrlPipe,
-    MostrarComponent
+    MostrarComponent,
   ],
   imports: [
     CommonModule,
@@ -27,10 +26,12 @@ import { MostrarComponent } from './mostrar/mostrar.component';
   ],
   exports:[
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MostrarComponent
   ],
   providers:[
-    SpotifyService
+    SpotifyService,
+    SanitizeUrlPipe
   ]
 
 })

@@ -1,19 +1,48 @@
 <div class="perfil">
-    <img src="" alt="">
+    <img src="{{ PlayList.images[0].url }}" alt="">
     <div class="datos">
-        <span class="letra">PERFIL</span>
-        <h1 class="letra"></h1>
+        <span class="letra">{{PlayList.type}}</span>
+        <h1 class="letra">{{ PlayList.name }}</h1>
+        <h3 class="h5 text-muted"> {{ PlayList.description}}</h3>
         <div class="subdatos">
-            <h2 class="text-muted h6"> PlayLists guardadas</h2>
-            <span class="circulo">•</span>
-            <h3 class="h6">seguidores</h3>
-            <span class="circulo">•</span>
-            <h3 class="h6">Sigue a artistas</h3>
+          <h3 class="h6">{{ PlayList.owner.display_name}}</h3>
+          <span class="circulo">•</span>
+          <h2 class="h6 text-muted">{{ PlayList.followers.total}} "me gusta"</h2>
+          <span class="circulo">•</span>
+          <h2 class="h6 text-muted">{{ PlayList.tracks.total}} canciones</h2>
+           
         </div>
     </div>
     <!-- <iframe src="https://open.spotify.com/embed/track/6JQvHMSaR8flFsN53ypOfP" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 </div>
 <div class="canciones">
+  <table class="table">
+    <thead>
+      <tr class="mb-4">
+        <th scope="col">#</th>
+        <th scope="col">Título/Autor</th>
+        <th scope="col">Álbum</th>
+        <th scope="col">Fecha Incorporación</th>
+        <th scope="col"><i class="far fa-clock"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let track of PlayList.tracks.items">
+        <th class="text-center">1</th>
+        <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
+        <td style="width: 100px;">{{ track.track.album.name }}</td>
+        <td style="width: 200px;">{{ track.added_at }}</td>
+        <td> {{ toMinutos(track.track.duration_ms) }}</td>
+      </tr> -->
+      <tr  *ngFor="let track of PlayList.tracks.items; let i = index">
+        <th class="text-center h5" style="padding-top:35px">{{ i + 1 }}</th>
+        <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+ track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
+        <td style="width: 200px; margin:auto;">{{ track.track.album.name }}</td>
+        <td style="width: 200px; padding-top:35px">{{ track.added_at }}</td>
+        <td style="padding-top:35px"> {{ toMinutos(track.track.duration_ms) }}</td>
+      </tr>
   
+    </tbody>
+  </table>
 </div>
    

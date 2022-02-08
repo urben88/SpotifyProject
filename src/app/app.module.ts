@@ -7,11 +7,12 @@ import { SpotifyModule } from './pages/spotify.module';
 import { SpotifyService } from './services/spotify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SanitizeUrlPipe } from './pipes/sanitize-url.pipe';
+
 // import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +20,7 @@ import { SanitizeUrlPipe } from './pipes/sanitize-url.pipe';
     SpotifyModule,
     HttpClientModule,
   ],
-  providers: [SpotifyService],
+  providers: [SpotifyService,SanitizeUrlPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
