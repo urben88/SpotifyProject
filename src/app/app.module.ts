@@ -6,17 +6,18 @@ import { AppComponent } from './app.component';
 import { SpotifyModule } from './pages/spotify.module';
 import { SpotifyService } from './services/spotify.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SanitizeUrlPipe } from './pipes/sanitize-url.pipe';
+// import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SpotifyModule,
-    HttpClientModule
-    
+    HttpClientModule,
   ],
   providers: [SpotifyService],
   bootstrap: [AppComponent]

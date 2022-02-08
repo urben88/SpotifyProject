@@ -1,8 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-$colorSpotify: #1CB050;
 html,body{
     height: 100%;
+    width: 100%;
 }
+
+
+/* You can add global styles to this file, and also import other style files */
+$colorSpotify: #1CB050;
+
 .spotify{
     background-color: $colorSpotify;
     color: white;
@@ -18,4 +22,8 @@ html,body{
     padding: 5px 20px;
     border-radius: 20px;
     font-size: 20px;
+}
+.letra{
+    color: white;
+    font-weight: bold;
 }

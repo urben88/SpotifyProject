@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../pages/interfaces/user.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class SpotifyService {
     clientSecret:'4899ab44c1c2466f9a716f343e94dbf8',
     accessToken:''
   }
-  public scope = 'user-read-private user-read-email';
+  public scope = 'user-read-private user-read-email user-top-read user-follow-read';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -44,10 +46,12 @@ export class SpotifyService {
     this.credentials.accessToken = sessionStorage.getItem('token') || '';
   }
 
-  getQuery(query:string){
+
+  getQuery<T>(query:string){
     const URL = `https://api.spotify.com/v1/${query}`;
     const HEADER = { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.credentials.accessToken}) }
-    return this._httpClient.get(URL,HEADER)
+    return this._httpClient.get<T>(URL,HEADER);
+
   }
 
   checkTokenSpoLogin(){
@@ -77,11 +81,14 @@ export class SpotifyService {
   saveAccessToken(){
     const currentQueryParameters = this.getCurrentQueryParameters('#');
     this.credentials.accessToken = String(currentQueryParameters.get('access_token'));
+    sessionStorage.setItem('token',String(currentQueryParameters.get('access_token')))
   }
 
   fetchProfileInformation() {
-      return this.getQuery('me');
-    }
+    const URL = `https://api.spotify.com/v1/me`;
+    const HEADER = { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.credentials.accessToken}) }
+    return this._httpClient.get<User>(URL,HEADER);
+  }
 
   getAccessToken(){
     return this.credentials.accessToken || 'No hay token';

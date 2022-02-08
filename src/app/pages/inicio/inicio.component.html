@@ -1,0 +1,61 @@
+
+<div class="perfil">
+
+<img src="{{ user.images[0].url }}" alt="">
+<div class="datos">
+    <span class="letra">PERFIL</span>
+    <h1 class="letra">{{ user.display_name }}</h1>
+    <div class="subdatos">
+        <h2 class="text-muted h6"> {{ playlists.total }} PlayLists guardadas</h2>
+        <span class="circulo">•</span>
+        <h3 class="h6"> {{ user.followers.total }} seguidores</h3>
+        <span class="circulo">•</span>
+        <h3 class="h6">Sigue a {{  followingArtists.artists.items.length }} artistas</h3>
+    </div>
+</div>
+
+<!-- <iframe src="https://open.spotify.com/embed/track/6JQvHMSaR8flFsN53ypOfP" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+</div>
+<div class="topArtistas">
+    <h1 class="letra">Artistas más escuchados este mes</h1>
+    <h2 class="text-muted h6 mb-4">Solo visible para ti</h2>
+    <div class="cajaArtistas">
+         <div *ngFor="let artista of topArtists.items" class="artista">
+            <img src="{{ artista.images[1].url }}" alt="">
+            <i class="fas fa-play"></i>
+            <h1 class="letra"> {{ artista.name }} </h1>
+            <h2 class="text-muted h6">Artista</h2>
+        </div>
+    </div>
+   
+</div>
+<div class="topTracks">
+    <h1 class="letra">Canciones más escuchadas este mes</h1>
+    <h2 class="text-muted h6 mb-4">Solo visible para ti</h2>
+    <!-- <iframe src="https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  -->
+    <!-- "https://api.spotify.com/v1/tracks/39JlamO6oYz8nRIYCfq8Bl" -->
+    <div class="caja" *ngFor="let track of topTracks.items">
+        <span class="letra">{{ sumarCuenta() }}</span>
+          <iframe [src]=" 'https://open.spotify.com/embed/track/'+track.id | sanitizeUrl" width="300" height="80" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe> 
+    </div>
+  
+
+    
+</div>
+<div class="playlists">
+    <h1 class="letra">Playlists Públicas</h1>
+    <!-- <iframe src="https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  -->
+    <!-- "https://api.spotify.com/v1/tracks/39JlamO6oYz8nRIYCfq8Bl" -->
+    <div class="cajaPlaylists">
+        <div *ngFor="let artista of playlists.items" class="artista">
+           <img src="{{ artista.images[0].url }}" alt="">
+           <i class="fas fa-play"></i>
+           <h1 class="letra"> {{ artista.name }} </h1>
+           <h2 class="text-muted h6">PlayList</h2>
+       </div>
+   </div>
+  
+
+    
+</div>
+

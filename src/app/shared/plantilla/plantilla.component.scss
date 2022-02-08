@@ -1,0 +1,46 @@
+
+.perfil{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 30px;
+    img{
+        border-radius: 100%;
+        box-shadow: 0px 0px black 30px;
+    }
+    .datos{
+        margin-left: 30px;
+        span{
+          
+        }
+        h1{
+          
+        }
+        .subdatos{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            .circulo{
+                margin:0px 5px;
+                font-size: 30px;
+                margin-bottom: 8px;
+                color: #6C757D;
+            }
+            h3{
+                color: white;
+                &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+     
+    }
+    
+}
+.canciones{
+    background-color: #141414;
+    width: 100%;
+    padding: 30px;
+}
