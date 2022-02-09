@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { PlayList } from '../../pages/interfaces/playList.interface';
+import { AlbumIndividual } from '../../pages/interfaces/albumIndividual.interface';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -17,8 +20,11 @@ export class PlantillaComponent implements OnInit {
 
   limit:number = 25;
   PlayList!:PlayList;
+  Album!:AlbumIndividual;
+  total!:number;
 
-  constructor(private _SpotifyService: SpotifyService) { }
+
+  constructor(private _SpotifyService: SpotifyService, private _router:Router) { }
 
   ngOnInit(): void {
     console.log(this.type)
@@ -26,9 +32,18 @@ export class PlantillaComponent implements OnInit {
        this._SpotifyService.getQuery<PlayList>("playlists/"+this.id).subscribe( (data)=>{
        console.log('AQUIII')
        console.log(data)
+       this.total = data.tracks.items.length
        this.PlayList = data;
      })
+    }
 
+    if(this.type == 'album'){
+      this._SpotifyService.getQuery<AlbumIndividual>("albums/"+this.id).subscribe( (data)=>{
+        console.log('AQUIII Album dentrooo')
+        console.log(data)
+        this.total = data.tracks.items.length
+        this.Album = data;
+      })
     }
 
   }
@@ -45,7 +60,19 @@ export class PlantillaComponent implements OnInit {
      console.log(this.limit)
   }
 
-  
+  ir(){
+    switch (this.type) {
+      case 'playlist':
+        this._router.navigate(['artista',this.PlayList.owner.id])
+        break;
+      case 'album':
+        this._router.navigate(['artista',this.Album.artists[0].id])
+        break;
+    
+      default:
+        break;
+    }
+  }
 
 
 

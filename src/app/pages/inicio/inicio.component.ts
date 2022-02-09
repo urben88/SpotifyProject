@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Playlists } from '../interfaces/playlists.interface';
 import { User } from '../interfaces/user.interface';
@@ -18,6 +18,9 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
+  @ViewChild('expandir') infoExpandir!:ElementRef<HTMLInputElement>;
+  @ViewChild('expandir2') infoExpandir2!:ElementRef<HTMLInputElement>;
+
   user!:User;
   playlists!:Playlists;
   followingArtists!:FollowingArtists;
@@ -26,7 +29,8 @@ export class InicioComponent implements OnInit {
   topTracksUrls!:string[];
   cuenta:number = 0;
   track = "https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl"
-
+  limitArtist:number = 4;
+  limitTrack:number = 5;
   constructor(private _SpotifyService: SpotifyService, public sanitizer: DomSanitizer, private _router:Router) { }
 
 
@@ -47,12 +51,12 @@ export class InicioComponent implements OnInit {
       this.followingArtists = data;
       console.log(data)
     })
-    this._SpotifyService.getQuery<TopArtists>("me/top/artists?limit=4").subscribe( (data)=>{
+    this._SpotifyService.getQuery<TopArtists>("me/top/artists").subscribe( (data)=>{
       this.topArtists = data;
       console.log(data)
     })
   
-    this._SpotifyService.getQuery<TopTracks>("me/top/tracks?limit=5").subscribe( (data)=>{
+    this._SpotifyService.getQuery<TopTracks>("me/top/tracks").subscribe( (data)=>{
       console.log('AQUIII')
       this.topTracks = data;
       console.log(data)
@@ -73,5 +77,29 @@ export class InicioComponent implements OnInit {
 
   irPlayList( id:string){
     this._router.navigate(['/mostar',id]);
+  }
+
+  ponerMasArtist(){
+    if(this.limitArtist == 4){
+      this.limitArtist = this.topArtists.items.length;
+      this.infoExpandir.nativeElement.innerHTML = "Reducir";
+     
+    }else{
+      this.limitArtist = 4;
+      this.infoExpandir.nativeElement.innerHTML = "Mostrar todo";
+    }
+    
+  }
+
+  ponerMasTrack(){
+    if(this.limitTrack == 5){
+      this.limitTrack = this.topTracks.items.length;
+      this.infoExpandir2.nativeElement.innerHTML = "Reducir";
+     
+    }else{
+      this.limitTrack = 5;
+      this.infoExpandir2.nativeElement.innerHTML = "Mostrar todo";
+    }
+   
   }
 }

@@ -1,5 +1,5 @@
-<div class="perfil">
-    <img src="{{ PlayList.images[1].url}}" alt="">
+<div *ngIf="type == 'playlist'" class="perfil">
+    <img src="{{ PlayList.images[0].url}}" alt="">
     <div class="datos">
         <span class="letra">{{PlayList.type}}</span>
         <h1 class="letra">{{ PlayList.name }}</h1>
@@ -7,9 +7,26 @@
         <div class="subdatos">
           <h3 class="h6">{{ PlayList.owner.display_name}}</h3>
           <span class="circulo">•</span>
-          <h2 class="h6 text-muted">{{ PlayList.followers.total}} "me gusta"</h2>
+          <h2 class="h6 text-muted">{{ PlayList.followers.total.toLocaleString() }} "me gusta"</h2>
           <span class="circulo">•</span>
-          <h2 class="h6 text-muted">{{ PlayList.tracks.total}} canciones</h2>
+          <h2 class="h6 text-muted">{{ PlayList.tracks.total.toLocaleString() }} canciones</h2>
+           
+        </div>
+    </div>
+    <!-- <iframe src="https://open.spotify.com/embed/track/6JQvHMSaR8flFsN53ypOfP" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+</div>
+
+<div *ngIf="type == 'album'" class="perfil">
+    <img src="{{ Album.images[0].url}}" alt="">
+    <div class="datos">
+        <span class="letra">{{Album.type}}</span>
+        <h1 class="letra">{{ Album.name }}</h1>
+        <div class="subdatos">
+          <h3 (click)="ir()" class="h6">{{ Album.artists[0].name}}</h3>
+          <span class="circulo">•</span>
+          <h2 class="h6 text-muted">Publicado en {{ Album.release_date }}</h2>
+          <span class="circulo">•</span>
+          <h2 class="h6 text-muted">{{ Album.total_tracks}} canciones</h2>
            
         </div>
     </div>
@@ -22,8 +39,8 @@
         <th scope="col">#</th>
         <th scope="col">Título</th>
         <th scope="col">Álbum</th>
-        <th scope="col">Fecha Incorporación</th>
-        <th scope="col"><i class="far fa-clock"></i></th>
+        <th *ngIf=" type != 'album'" scope="col">Fecha Incorporación</th>
+        <th  scope="col"><i class="far fa-clock"></i></th>
       </tr>
     </thead>
     <tbody *ngIf="type == 'playlist'">
@@ -56,16 +73,15 @@
   
     </tbody>
     <tbody *ngIf="type == 'album'">
-      <tr>
-        <!-- <th class="text-center h5" style="padding-top:35px">1</th>
-        <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+ track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
-        <td style="width: 200px; margin:auto;">{{ track.track.album.name }}</td>
-        <td style="width: 200px; padding-top:35px">{{ track.added_at }}</td>
-        <td style="padding-top:35px"> {{ toMinutos(track.track.duration_ms) }}</td> -->
+      <tr *ngFor="let track of Album.tracks.items.slice(0,limit); let i = index">
+        <th class="text-center h5" style="padding-top:35px">{{ i + 1 }}</th>
+        <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+ track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
+        <td style="width: 200px; margin:auto;">{{ Album.name }}</td>
+        <td style="padding-top:35px"> {{ toMinutos(track.duration_ms) }}</td>
       </tr>
   
     </tbody>
   </table>
-  <h3 class="h6 text-muted text-end linkExt" (click)="ponerMas()" #expandir>Mostrar todo</h3>
+  <h3 *ngIf="total > 25" class="h6 text-muted text-end linkExt" (click)="ponerMas()" #expandir>Mostrar todo</h3>
 </div>
    

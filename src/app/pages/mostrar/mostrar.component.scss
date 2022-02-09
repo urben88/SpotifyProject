@@ -1,3 +1,4 @@
+$color: rgb(236, 194, 5);
 .contenedor{
     width: 100%;
     height: 100%;
@@ -5,8 +6,8 @@
     flex-direction: row;
     .content{
         flex-grow: 8;
-        background: rgb(150,149,149);
-        background: linear-gradient(180deg, rgba(150,149,149,1) 0%, rgba(0,0,0,1) 39%);
+        background: $color;
+        background: linear-gradient(180deg, $color 0%, rgba(0,0,0,1) 39%);
         padding: 0px; 
         width: calc(100vh - 200px);
         height: 100%;

@@ -26,20 +26,21 @@
                 <h1 class="letra"> {{ artista.name }} </h1>
                 <h2 class="text-muted h6">Artista</h2>
             </div> -->
-            <app-card *ngFor="let artista of topArtists.items" [card]="artista | card:'artist'"></app-card>
+            <app-card *ngFor="let artista of topArtists.items.slice(0,limitArtist)" [card]="artista | card:'artist'"></app-card>
         </div>
-    
+        <h3 class="h6 text-muted text-end linkExt" (click)="ponerMasArtist()" #expandir>Mostrar todo</h3>
     </div>
     <div class="topTracks">
         <h1 class="letra">Canciones más escuchadas este mes</h1>
         <h2 class="text-muted h6 mb-4">Solo visible para ti</h2>
         <!-- <iframe src="https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  -->
         <!-- "https://api.spotify.com/v1/tracks/39JlamO6oYz8nRIYCfq8Bl" -->
-        <div class="caja" *ngFor="let track of topTracks.items; let i = index ">
-            <span class="letra">{{ i + 1 }}</span>
+        <div class="caja" *ngFor="let track of topTracks.items.slice(0,limitTrack); let i = index ">
+            <span class="letra">{{ i + 1 }}</span> 
             <iframe [src]=" 'https://open.spotify.com/embed/track/'+track.id | sanitizeUrl" width="300" height="80" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe> 
-    </div>
-  
+        </div>
+        <h3 class="h6 text-muted text-end linkExt" (click)="ponerMasTrack()" #expandir2>Mostrar todo</h3>
+
 
     
 </div>
