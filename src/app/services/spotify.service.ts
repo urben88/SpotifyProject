@@ -49,7 +49,7 @@ export class SpotifyService {
 
   getQuery<T>(query:string){
     const URL = `https://api.spotify.com/v1/${query}`;
-    const HEADER = { headers: new HttpHeaders({'Authorization': 'Bearer ' + this.credentials.accessToken}) }
+    const HEADER = { headers: new HttpHeaders({'Authorization': 'Bearer ' + sessionStorage.getItem('token')}) }
     return this._httpClient.get<T>(URL,HEADER);
 
   }

@@ -52,7 +52,7 @@ export class InicioComponent implements OnInit {
       console.log(data)
     })
   
-    this._SpotifyService.getQuery<TopTracks>("me/top/tracks?limit=4").subscribe( (data)=>{
+    this._SpotifyService.getQuery<TopTracks>("me/top/tracks?limit=5").subscribe( (data)=>{
       console.log('AQUIII')
       this.topTracks = data;
       console.log(data)

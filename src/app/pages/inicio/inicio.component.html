@@ -34,8 +34,8 @@
     <h2 class="text-muted h6 mb-4">Solo visible para ti</h2>
     <!-- <iframe src="https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  -->
     <!-- "https://api.spotify.com/v1/tracks/39JlamO6oYz8nRIYCfq8Bl" -->
-    <div class="caja" *ngFor="let track of topTracks.items">
-        <span class="letra">{{ sumarCuenta() }}</span>
+    <div class="caja" *ngFor="let track of topTracks.items; let i = index ">
+        <span class="letra">{{ i + 1 }}</span>
           <iframe [src]=" 'https://open.spotify.com/embed/track/'+track.id | sanitizeUrl" width="300" height="80" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe> 
     </div>
   
@@ -47,12 +47,13 @@
     <!-- <iframe src="https://open.spotify.com/embed/track/39JlamO6oYz8nRIYCfq8Bl" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  -->
     <!-- "https://api.spotify.com/v1/tracks/39JlamO6oYz8nRIYCfq8Bl" -->
     <div class="cajaPlaylists">
-        <div *ngFor="let artista of playlists.items" class="artista">
-           <img src="{{ artista.images[0].url }}" alt="">
+        <!-- <div *ngFor="let artista of playlists.items" class="artista">
+           <img src="{{ artista.images[0].url}}" alt="">
            <a (click)="irPlayList(artista.id)"><i class="fas fa-play"></i></a>
            <h1 class="letra"> {{ artista.name }} </h1>
            <h2 class="text-muted h6">PlayList</h2>
-       </div>
+       </div> -->
+       <app-card *ngFor="let artista of playlists.items" [card]="artista | card"></app-card>
    </div>
   
 

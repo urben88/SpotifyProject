@@ -7,7 +7,7 @@ import { MostrarComponent } from './pages/mostrar/mostrar.component';
 const routes: Routes = [
   {path:'',component: LoginComponent},
   {path:'home',component: HomeComponent},
-  {path:'mostar/:id',component: MostrarComponent},
+  {path:'mostrar/:id',component: MostrarComponent},
   {path: '**',  redirectTo: '/', pathMatch: 'full' }
 ];
 
