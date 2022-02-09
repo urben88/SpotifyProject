@@ -1,32 +1,49 @@
 // To parse this data:
 //
-//   import { Convert, TopArtists } from "./file";
+//   import { Convert, Album } from "./file";
 //
-//   const topArtists = Convert.toTopArtists(json);
+//   const album = Convert.toAlbum(json);
 //
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
-export interface TopArtists {
-    items:    Artist[];
-    total:    number;
+export interface Album {
+    href:     string;
+    items:    Item[];
     limit:    number;
+    next:     string;
     offset:   number;
     previous: null;
-    href:     string;
-    next:     string;
+    total:    number;
+}
+
+export interface Item {
+    album_group:            AlbumGroupEnum;
+    album_type:             AlbumGroupEnum;
+    artists:                Artist[];
+    available_markets:      string[];
+    external_urls:          ExternalUrls;
+    href:                   string;
+    id:                     string;
+    images:                 Image[];
+    name:                   string;
+    release_date:           Date;
+    release_date_precision: ReleaseDatePrecision;
+    total_tracks:           number;
+    type:                   ItemType;
+    uri:                    string;
+}
+
+export enum AlbumGroupEnum {
+    Single = "single",
 }
 
 export interface Artist {
     external_urls: ExternalUrls;
-    followers:     Followers;
-    genres:        string[];
     href:          string;
     id:            string;
-    images:        Image[];
     name:          string;
-    popularity:    number;
-    type:          Type;
+    type:          ArtistType;
     uri:           string;
 }
 
@@ -34,9 +51,8 @@ export interface ExternalUrls {
     spotify: string;
 }
 
-export interface Followers {
-    href:  null;
-    total: number;
+export enum ArtistType {
+    Artist = "artist",
 }
 
 export interface Image {
@@ -45,19 +61,23 @@ export interface Image {
     width:  number;
 }
 
-export enum Type {
-    Artist = "artist",
+export enum ReleaseDatePrecision {
+    Day = "day",
+}
+
+export enum ItemType {
+    Album = "album",
 }
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-    public static toTopArtists(json: string): TopArtists {
-        return cast(JSON.parse(json), r("TopArtists"));
+    public static toAlbum(json: string): Album {
+        return cast(JSON.parse(json), r("Album"));
     }
 
-    public static topArtistsToJson(value: TopArtists): string {
-        return JSON.stringify(uncast(value, r("TopArtists")), null, 2);
+    public static albumToJson(value: Album): string {
+        return JSON.stringify(uncast(value, r("Album")), null, 2);
     }
 }
 
@@ -194,40 +214,57 @@ function r(name: string) {
 }
 
 const typeMap: any = {
-    "TopArtists": o([
+    "Album": o([
+        { json: "href", js: "href", typ: "" },
         { json: "items", js: "items", typ: a(r("Item")) },
-        { json: "total", js: "total", typ: 0 },
         { json: "limit", js: "limit", typ: 0 },
+        { json: "next", js: "next", typ: "" },
         { json: "offset", js: "offset", typ: 0 },
         { json: "previous", js: "previous", typ: null },
-        { json: "href", js: "href", typ: "" },
-        { json: "next", js: "next", typ: "" },
+        { json: "total", js: "total", typ: 0 },
     ], false),
     "Item": o([
+        { json: "album_group", js: "album_group", typ: r("AlbumGroupEnum") },
+        { json: "album_type", js: "album_type", typ: r("AlbumGroupEnum") },
+        { json: "artists", js: "artists", typ: a(r("Artist")) },
+        { json: "available_markets", js: "available_markets", typ: a("") },
         { json: "external_urls", js: "external_urls", typ: r("ExternalUrls") },
-        { json: "followers", js: "followers", typ: r("Followers") },
-        { json: "genres", js: "genres", typ: a("") },
         { json: "href", js: "href", typ: "" },
         { json: "id", js: "id", typ: "" },
         { json: "images", js: "images", typ: a(r("Image")) },
         { json: "name", js: "name", typ: "" },
-        { json: "popularity", js: "popularity", typ: 0 },
-        { json: "type", js: "type", typ: r("Type") },
+        { json: "release_date", js: "release_date", typ: Date },
+        { json: "release_date_precision", js: "release_date_precision", typ: r("ReleaseDatePrecision") },
+        { json: "total_tracks", js: "total_tracks", typ: 0 },
+        { json: "type", js: "type", typ: r("ItemType") },
+        { json: "uri", js: "uri", typ: "" },
+    ], false),
+    "Artist": o([
+        { json: "external_urls", js: "external_urls", typ: r("ExternalUrls") },
+        { json: "href", js: "href", typ: "" },
+        { json: "id", js: "id", typ: "" },
+        { json: "name", js: "name", typ: "" },
+        { json: "type", js: "type", typ: r("ArtistType") },
         { json: "uri", js: "uri", typ: "" },
     ], false),
     "ExternalUrls": o([
         { json: "spotify", js: "spotify", typ: "" },
-    ], false),
-    "Followers": o([
-        { json: "href", js: "href", typ: null },
-        { json: "total", js: "total", typ: 0 },
     ], false),
     "Image": o([
         { json: "height", js: "height", typ: 0 },
         { json: "url", js: "url", typ: "" },
         { json: "width", js: "width", typ: 0 },
     ], false),
-    "Type": [
+    "AlbumGroupEnum": [
+        "single",
+    ],
+    "ArtistType": [
         "artist",
+    ],
+    "ReleaseDatePrecision": [
+        "day",
+    ],
+    "ItemType": [
+        "album",
     ],
 };

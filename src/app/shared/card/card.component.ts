@@ -13,16 +13,20 @@ export class CardComponent implements OnInit {
   constructor( private _router:Router) { }
 
   ngOnInit(): void {
-    console.log(this.card)
+    // console.log(this.card)
   }
 
   ir(){
 
     switch (this.card.type) {
-      case 'playlist':
-        this._router.navigate(['mostrar/',this.card.id])
+      case 'playlist': case'album':
+        this._router.navigate(['mostrar/',this.card.type,this.card.id])
         break;
     
+      case 'artist':
+        this._router.navigate(['artista/',this.card.id])
+        break;
+   
       default:
         this._router.navigate(['/home'])
         break;

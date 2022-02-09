@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { SanitizeUrlPipe } from '../pipes/sanitize-url.pipe';
 import { MostrarComponent } from './mostrar/mostrar.component';
-import { CardPipe } from '../pipes/card.pipe';
+import { ArtistaComponent } from './artista/artista.component';
 
 
 
@@ -19,7 +19,7 @@ import { CardPipe } from '../pipes/card.pipe';
     HomeComponent,
     InicioComponent,
     MostrarComponent,
-    CardPipe
+    ArtistaComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +34,6 @@ import { CardPipe } from '../pipes/card.pipe';
   providers:[
     SpotifyService,
     SanitizeUrlPipe,
-    CardPipe
   ]
 
 })

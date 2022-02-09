@@ -14,6 +14,7 @@ export class MostrarComponent implements OnInit {
 
   ejem:string ='7hS6MRWu7pYbMQ0e8yIKF3?si=6842378617584cfb';
   id!:string|null;
+  type!:any;
   playList!:PlayList;
   playListTracks!:Tracks;
   constructor(private _SpotifyService: SpotifyService, public _route:ActivatedRoute ) {
@@ -21,16 +22,16 @@ export class MostrarComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this._route.snapshot.paramMap.get('id');
+    this.type = this._route.snapshot.paramMap.get('type');
     console.log(this.id)
+    console.log(this.type)
     this._SpotifyService.ponerToken();
     console.log(this._SpotifyService.getAccessToken())
-    
-    this._SpotifyService.getQuery<PlayList>("playlists/"+this.id).subscribe( (data)=>{
-      console.log('AQUIII')
-      console.log(data)
-      this.playList = data;
-
-    })
+    // this._SpotifyService.getQuery<PlayList>("playlists/"+this.id).subscribe( (data)=>{
+    //   console.log('AQUIII')
+    //   console.log(data)
+    //   this.playList = data;
+    // })
   }
 
 

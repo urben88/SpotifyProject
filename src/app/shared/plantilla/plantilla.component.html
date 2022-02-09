@@ -1,5 +1,5 @@
 <div class="perfil">
-    <img src="{{ PlayList.images[0].url }}" alt="">
+    <img src="{{ PlayList.images[1].url}}" alt="">
     <div class="datos">
         <span class="letra">{{PlayList.type}}</span>
         <h1 class="letra">{{ PlayList.name }}</h1>
@@ -20,13 +20,13 @@
     <thead>
       <tr class="mb-4">
         <th scope="col">#</th>
-        <th scope="col">Título/Autor</th>
+        <th scope="col">Título</th>
         <th scope="col">Álbum</th>
         <th scope="col">Fecha Incorporación</th>
         <th scope="col"><i class="far fa-clock"></i></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="type == 'playlist'">
       <!-- <tr *ngFor="let track of PlayList.tracks.items">
         <th class="text-center">1</th>
         <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
@@ -34,15 +34,38 @@
         <td style="width: 200px;">{{ track.added_at }}</td>
         <td> {{ toMinutos(track.track.duration_ms) }}</td>
       </tr> -->
-      <tr  *ngFor="let track of PlayList.tracks.items; let i = index">
+      <tr *ngFor="let track of PlayList.tracks.items.slice(0,limit); let i = index">
         <th class="text-center h5" style="padding-top:35px">{{ i + 1 }}</th>
         <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+ track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
         <td style="width: 200px; margin:auto;">{{ track.track.album.name }}</td>
         <td style="width: 200px; padding-top:35px">{{ track.added_at }}</td>
         <td style="padding-top:35px"> {{ toMinutos(track.track.duration_ms) }}</td>
       </tr>
+
+  
+    </tbody>
+
+    <tbody *ngIf="type == 'sencillo'">
+      <tr>
+        <!-- <th class="text-center h5" style="padding-top:35px">1</th>
+        <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+ track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
+        <td style="width: 200px; margin:auto;">{{ track.track.album.name }}</td>
+        <td style="width: 200px; padding-top:35px">{{ track.added_at }}</td>
+        <td style="padding-top:35px"> {{ toMinutos(track.track.duration_ms) }}</td> -->
+      </tr>
+  
+    </tbody>
+    <tbody *ngIf="type == 'album'">
+      <tr>
+        <!-- <th class="text-center h5" style="padding-top:35px">1</th>
+        <td style="width: 600px;"><iframe [src]="'https://open.spotify.com/embed/track/'+ track.track.id | sanitizeUrl " width="600" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></td>
+        <td style="width: 200px; margin:auto;">{{ track.track.album.name }}</td>
+        <td style="width: 200px; padding-top:35px">{{ track.added_at }}</td>
+        <td style="padding-top:35px"> {{ toMinutos(track.track.duration_ms) }}</td> -->
+      </tr>
   
     </tbody>
   </table>
+  <h3 class="h6 text-muted text-end linkExt" (click)="ponerMas()" #expandir>Mostrar todo</h3>
 </div>
    

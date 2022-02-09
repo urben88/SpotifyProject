@@ -7,7 +7,8 @@ import { SpotifyModule } from './pages/spotify.module';
 import { SpotifyService } from './services/spotify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SanitizeUrlPipe } from './pipes/sanitize-url.pipe';
-import { CardPipe } from './pipes/card.pipe';
+
+
 
 // import { SafePipe } from './pipes/safe.pipe';
 
@@ -21,7 +22,7 @@ import { CardPipe } from './pipes/card.pipe';
     SpotifyModule,
     HttpClientModule,
   ],
-  providers: [SpotifyService,SanitizeUrlPipe,CardPipe],
+  providers: [SpotifyService,SanitizeUrlPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

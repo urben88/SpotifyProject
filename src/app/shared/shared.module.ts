@@ -5,12 +5,16 @@ import { PlantillaComponent } from './plantilla/plantilla.component';
 import { SanitizeUrlPipe } from '../pipes/sanitize-url.pipe';
 import { CardComponent } from './card/card.component';
 import { CardPipe } from '../pipes/card.pipe';
+import { PlantillaArtistaComponent } from './plantilla-artista/plantilla-artista.component';
+
 
 
 @NgModule({
   declarations: [
     NavComponent,
-    PlantillaComponent,SanitizeUrlPipe,CardComponent
+    PlantillaComponent,SanitizeUrlPipe,CardComponent, PlantillaArtistaComponent,
+    CardPipe
+
   ],
   imports: [
     CommonModule
@@ -19,7 +23,9 @@ import { CardPipe } from '../pipes/card.pipe';
     NavComponent,
     PlantillaComponent,
     SanitizeUrlPipe,
-    CardComponent
+    CardComponent,
+    PlantillaArtistaComponent,
+    CardPipe
   ],
   providers: []
 
