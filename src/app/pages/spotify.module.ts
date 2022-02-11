@@ -9,6 +9,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { SanitizeUrlPipe } from '../pipes/sanitize-url.pipe';
 import { MostrarComponent } from './mostrar/mostrar.component';
 import { ArtistaComponent } from './artista/artista.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -19,7 +20,8 @@ import { ArtistaComponent } from './artista/artista.component';
     HomeComponent,
     InicioComponent,
     MostrarComponent,
-    ArtistaComponent
+    ArtistaComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

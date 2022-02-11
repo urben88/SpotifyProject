@@ -35,7 +35,6 @@ export class CardPipe implements PipeTransform {
       card.type = 'album';
     }
 
-
     return card;
 
   }

@@ -1,0 +1,42 @@
+<!--TODO Nav -->
+<div class="contenedor" style="height: 100%;">
+    <!-- ? Col-4 -->
+    <div class="menu">
+         <app-nav></app-nav>
+    </div>
+   
+    <div class="content">
+        <div class="cajabuscar">
+            <div class="buscar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input (keyup.enter)="buscar()" [(ngModel)]="query" type="search" #search id="buscar" value="{{ last }}">
+            </div>
+            <select name="tipo" (change)="cambiarOpcion()"  [(ngModel)]="opcion" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 150px; margin-left:30px; margin-top:10px">
+                <option value="all" selected>Todo</option>
+                <option value="track">Cancion</option>
+                <option value="playlist">PlayList</option>
+                <option value="album">Album</option>
+                <option value="artist">Artista</option>
+            </select>
+        </div>
+        <div class="cajaresult">
+            <ng-template #name></ng-template>
+            
+            <div *ngIf="opcion == 'all'" class="results">
+                    <iframe *ngFor="let track of resul.tracks.items.slice(0,5)" [src]=" 'https://open.spotify.com/embed/track/'+track.id | sanitizeUrl" width="300" height="80" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe> 
+                    <app-card *ngFor="let artist of resul.artists.items.slice(0,5)" [card]="artist | card:'artist'"></app-card>
+                    <app-card *ngFor="let artist of resul.playlists.items.slice(0,5)" [card]="artist | card:'playlist'"></app-card>
+                    <app-card *ngFor="let artist of resul.albums.items.slice(0,5)" [card]="artist | card:'album'"></app-card>
+            </div>
+            <div *ngIf="opcion == 'playlist'" class="results">
+                    <app-card *ngFor="let artist of resul.playlists.items" [card]="artist | card:'playlist'"></app-card>
+            </div>
+            <div *ngIf="opcion == 'album'" class="results">
+                    <app-card *ngFor="let artist of resul.albums.items" [card]="artist | card:'album'"></app-card>
+            </div>
+            <div *ngIf="opcion == 'artist'" class="results">
+                    <app-card *ngFor="let artist of resul.artists.items" [card]="artist | card:'artist'"></app-card>
+            </div>
+        </div>
+    </div>
+</div>

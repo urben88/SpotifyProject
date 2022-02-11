@@ -15,5 +15,8 @@ export class NavComponent implements OnInit {
   irHome(){
     this._router.navigate(['/home']);
   }
+  irBuscar(){
+    this._router.navigate(['/buscar']);
+  }
 
 }
