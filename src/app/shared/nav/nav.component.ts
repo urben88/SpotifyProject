@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Href } from '../../pages/interfaces/topTracksArtist.interface';
 
 @Component({
   selector: 'app-nav',
@@ -18,5 +19,21 @@ export class NavComponent implements OnInit {
   irBuscar(){
     this._router.navigate(['/buscar']);
   }
+  logout(){
+    const url = 'https://www.spotify.com/logout/'                                                                                                                                                                                                                                                                               
+    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40') || false;                                                                                       
+    setTimeout( ()=>{
+      if(spotifyLogoutWindow){
+         spotifyLogoutWindow.close() 
+      }
+      this._router.navigate(['/']);
+    }
 
+    , 2000)
+
+  }
+  irSpotify(){
+    const url = "https://open.spotify.com";
+    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40') || false;                                                                                       
+  }
 }

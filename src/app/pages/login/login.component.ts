@@ -8,7 +8,8 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _SpotifyService: SpotifyService) { }
+  constructor(private _SpotifyService: SpotifyService) {
+   }
 
   persona={
     nombre:''

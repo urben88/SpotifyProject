@@ -28,7 +28,7 @@ export class SpotifyService {
   public poolURLS = {
     authorize: 'https://accounts.spotify.com/authorize?client_id='+
     this.credentials.clientId + "&response_type=token"+
-    '&redirect_uri='+encodeURIComponent('http://localhost:4200/home')+
+    '&redirect_uri='+encodeURIComponent('https://spotify-cliente-ruben.netlify.app/home')+
     '&expires_in=3600'+
     '&scope='+this.scope,
     refreshAccessToken: 'https://accounts.spotify.com/api/token'
