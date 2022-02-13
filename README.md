@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
+## Despliegue
+
+Esta aplicación  esta desplegada en netlify https://spotify-cliente-ruben.netlify.app .
+
+## Descripción 
+
+Este es el proyecto para la segunda evaluación del Módulo Desarrollo Web en entorno cliente.
+Los réquisitos de este proyecto era usar un API y un FrameWork.
+
+En mi caso he usado Angular y el API de Spotify.
+
+La aplicación consta de un login de usuario donde puedes entrar con tu cuenta de spotify. Puedes ver información de tu cuenta y ademas buscar por tipos.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
