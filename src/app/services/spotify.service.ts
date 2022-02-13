@@ -15,7 +15,7 @@ export class SpotifyService {
     clientSecret:'4899ab44c1c2466f9a716f343e94dbf8',
     accessToken:''
   }
-  public scope = 'user-read-private user-read-email user-top-read user-follow-read';
+  public scope = 'ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-private user-read-email user-follow-modify user-follow-read user-library-modify user-library-read streaming app-remote-control user-read-playback-position user-top-read user-read-recently-played playlist-modify-private playlist-read-collaborative playlist-read-private playlist-modify-public';
 
   private httpOptions = {
     headers: new HttpHeaders({
